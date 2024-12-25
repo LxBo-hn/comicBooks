@@ -1,0 +1,51 @@
+@model IEnumerable<RentalReportViewModel>
+
+@functions {
+    public string BookName { get; set; }
+    public DateTime RentalDate { get; set; }
+    public DateTime ReturnDate { get; set; }
+    public string CustomerName { get; set; }
+    public int Quantity { get; set; }
+
+}
+
+<h2>Rental Report</h2>
+
+<form method="get">
+    <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" name="startDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input type="date" name="endDate" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Book name</th>
+        <th>Rental date</th>
+        <th>Return date</th>
+        <th>Customer name</th>
+        <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{var i = 1;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(i++)</td>
+            <td>@item.BookName</td>
+            <td>@item.RentalDate.ToString()</td>
+            <td>@item.ReturnDate.ToString()</td>
+            <td>@item.CustomerName</td>
+            <td>@item.Quantity</td>
+        </tr>
+    }
+    </tbody>
+</table>
